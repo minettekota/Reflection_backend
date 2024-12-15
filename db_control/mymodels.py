@@ -1,37 +1,16 @@
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from datetime import datetime
- 
+from sqlalchemy import Column, Integer, Text
+from sqlalchemy.ext.declarative import declarative_base
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
+class Reflection(Base):
+    __tablename__ = 'reflections'
+    refleid = Column(Integer, primary_key=True, autoincrement=True)
+    feeling = Column(Text, nullable=False)
+    event = Column(Text, nullable=False)
+    emotion = Column(Text, nullable=False)
+    values = Column(Text, nullable=False)
+    assess = Column(Integer, nullable=True)
+    awareness = Column(Text, nullable=True)
 
-class Customers(Base):
-    __tablename__ = 'customers'
-    customer_id:Mapped[str] = mapped_column(primary_key=True)
-    customer_name:Mapped[str] = mapped_column()
-    age:Mapped[int] = mapped_column()
-    gender:Mapped[str] = mapped_column()
-
-
-class Items(Base):
-    __tablename__ = 'items'
-    item_id:Mapped[str] = mapped_column(primary_key=True)
-    item_name:Mapped[str] = mapped_column()
-    price:Mapped[int] = mapped_column()
- 
-
-class Purchases(Base):
-    __tablename__ = 'purchases'
-    purchase_id:Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    purchase_name:Mapped[str] = mapped_column(ForeignKey("customers.customer_id"))
-    date:Mapped[datetime] = mapped_column()
- 
-
-class PurchaseDetails(Base):
-    __tablename__ = 'purchase_details'
-    purchase_id:Mapped[int] = mapped_column(ForeignKey("purchases.purchase_id"), primary_key=True)
-    item_name:Mapped[str] = mapped_column(ForeignKey("items.item_id"), primary_key=True)
-    quantity:Mapped[int] = mapped_column()
  

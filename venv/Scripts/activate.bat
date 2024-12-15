@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\me08t\OneDrive\デスクトップ\LinkFlaskNext-main\backend\venv
+set VIRTUAL_ENV=C:\Users\me08t\OneDrive\デスクトップ\LinkFlaskNext-main-202412\backend\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
